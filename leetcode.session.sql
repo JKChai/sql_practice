@@ -1,5 +1,34 @@
 /*
-181 Employee Earnings More than their Manager
+175. Combine Two Tables
+*/
+--@block Create person TABLE
+CREATE TABLE person_input1_175 (
+    personId INT PRIMARY KEY AUTO_INCREMENT,
+    lastName VARCHAR(40),
+    firstName VARCHAR(40)
+);
+
+CREATE TABLE address_input1_175 (
+    addressId INT PRIMARY KEY AUTO_INCREMENT,
+    personId int,
+    city VARCHAR(40),
+    state VARCHAR(40)
+);
+--@block Insert values
+INSERT INTO person_input1_175 (lastName, firstName) 
+VALUES 
+('Wang', 'Allen'),
+('Alice', 'Bob');
+
+INSERT INTO address_input1_175 (personId, city, state) 
+VALUES 
+(2, 'New York City', 'New York'),
+(3, 'Leetcode', 'California');
+
+/*
+##############################################
+181. Employee Earnings More than their Manager
+##############################################
 */
 
 --@block Create input 1 TABLE

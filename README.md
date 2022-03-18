@@ -7,5 +7,5 @@ Store SQL code uses to practice SQL questions provided from Leetcode for friends
 - [x] 176 MEDIUM
 - [X] 177 MEDIUM
 - [X] 181 EASY
-- [ ] 175 EASY
+- [X] 175 EASY
 
