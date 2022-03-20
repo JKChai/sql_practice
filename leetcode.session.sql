@@ -1,4 +1,35 @@
 /*
+184. Department Highest Salary
+*/
+--@block Create employee TABLE
+CREATE TABLE employee_input1_184 (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    name VARCHAR(40),
+    salary INT,
+    departmentId INT
+);
+
+--@block Create department TABLE
+CREATE TABLE department_input1_184 (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    name VARCHAR(40)
+);
+
+--@block 
+INSERT INTO employee_input1_184 (name, salary, departmentId) 
+VALUES 
+('Joe', 70000, 1),
+('Jim', 90000, 1),
+('Henry', 80000, 2),
+('Sam', 60000, 2),
+('Max', 90000, 1);
+
+INSERT INTO department_input1_184 (name) 
+VALUES 
+('IT'),
+('Sales');
+
+/*
 175. Combine Two Tables
 */
 --@block Create person TABLE
