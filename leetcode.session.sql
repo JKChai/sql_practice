@@ -1,4 +1,119 @@
 /*
+178 Rank Scores
+*/
+
+--@block 
+CREATE TABLE scores_input1_178 (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    score DECIMAL(4,2)
+);
+
+--@block 
+INSERT INTO scores_input1_178 (score)
+VALUES
+(3.50),
+(3.65),
+(4.00),
+(3.85),
+(4.00),
+(3.65);
+
+/*
+262 Trips & Users
+*/
+
+--@block Create employee TABLE
+CREATE TABLE trips_input1_262 (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    client_id INT,
+    driver_id INT,
+    city_id INT,
+    status ENUM('completed', 'cancelled_by_driver', 'cancelled_by_client'),
+    request_at DATE
+);
+
+--@block Create employee TABLE
+CREATE TABLE users_input1_262 (
+    user_id INT PRIMARY KEY AUTO_INCREMENT,
+    banned ENUM('client', 'driver', 'partner'),
+    role ENUM('Yes', 'No')
+);
+
+--@block Add foreign key
+ALTER TABLE trips_input1_262
+ADD FOREIGN KEY(client_id)
+REFERENCES users_input1_262(user_id)
+ON DELETE SET NULL;
+
+ALTER TABLE trips_input1_262
+ADD FOREIGN KEY(driver_id)
+REFERENCES users_input1_262(user_id)
+ON DELETE SET NULL;
+
+--@block
+/*Remove auto increment from user_id*/
+SET FOREIGN_KEY_CHECKS=0;
+
+ALTER TABLE users_input1_262 MODIFY COLUMN user_id INT;
+
+SET FOREIGN_KEY_CHECKS=1;
+
+
+--@block
+/* Drop foreign key constraints */
+
+/* ALTER TABLE tbl_name DROP FOREIGN KEY fk_symbol; */
+
+
+--@block
+/*
+Rename data column and give data type
+*/
+/*ALTER TABLE users_input1_262 CHANGE banned role ENUM('Yes', 'No'); */
+
+--@block
+SET FOREIGN_KEY_CHECKS = 0;
+DROP TABLE users_input1_262;
+SET FOREIGN_KEY_CHECKS = 1;
+
+--@block Create employee TABLE
+CREATE TABLE users_input1_262 (
+    user_id INT PRIMARY KEY AUTO_INCREMENT,
+    banned ENUM('Yes', 'No'),
+    role ENUM('client', 'driver', 'partner')
+);
+
+--@block
+/*
+https://stackoverflow.com/questions/64366488/how-to-handle-a-foreign-key-constraint-fails-in-mysql
+Order does matter
+*/
+INSERT INTO users_input1_262 (user_id, banned, role) 
+VALUES 
+(1, 'No', 'client'),
+(2, 'Yes', 'client'),
+(3, 'No', 'client'),
+(4, 'No', 'client'),
+(10, 'No', 'driver'),
+(11, 'No', 'driver'),
+(12, 'No', 'driver'),
+(13, 'No', 'driver');
+
+INSERT INTO trips_input1_262 (client_id, driver_id, city_id, status, request_at) 
+VALUES 
+(1, 10, 1, 'completed', '2013-10-01'),
+(2, 11, 1, 'cancelled_by_driver', '2013-10-01'),
+(3, 12, 6, 'completed', '2013-10-01'),
+(4, 13, 6, 'cancelled_by_client', '2013-10-01'),
+(1, 10, 1, 'completed', '2013-10-02'),
+(2, 11, 6, 'completed', '2013-10-02'),
+(3, 12, 6, 'completed', '2013-10-02'),
+(2, 12, 12, 'completed', '2013-10-03'),
+(3, 10, 12, 'completed', '2013-10-03'),
+(4, 13, 12, 'cancelled_by_driver', '2013-10-03');
+
+
+/*
 184. Department Highest Salary
 */
 --@block Create employee TABLE
